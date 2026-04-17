@@ -128,3 +128,12 @@
     @apply font-sans;
   }
 }
+
+@keyframes guest-marquee {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}

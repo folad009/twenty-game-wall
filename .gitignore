@@ -20,6 +20,9 @@
 # production
 /build
 
+# local quiz data (JSON store)
+/data
+
 # misc
 .DS_Store
 *.pem
