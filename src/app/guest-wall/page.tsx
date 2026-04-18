@@ -13,7 +13,7 @@ export default function GuestWallPage({
     kioskParam === "1" || (Array.isArray(kioskParam) && kioskParam.includes("1"));
 
   return (
-    <div className="mx-auto flex w-full max-w-5xl flex-col gap-5 px-4 py-6 sm:gap-6 sm:px-6 sm:py-10">
+    <div className="mx-auto flex min-h-full w-full max-w-5xl flex-col gap-5 bg-background px-4 py-6 sm:gap-6 sm:px-6 sm:py-10">
       {!kioskMode ? (
         <header className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/70 bg-card/60 p-4 shadow-sm backdrop-blur sm:p-6">
           <div className="space-y-1.5">

@@ -120,9 +120,6 @@ export function QuizExperience() {
             Live game
           </span>
         </div>
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
-          Quiz night
-        </p>
         <h1 className="font-heading text-balance text-2xl font-semibold tracking-tight sm:text-4xl">
           One honest thing that paid off
         </h1>
@@ -175,7 +172,7 @@ export function QuizExperience() {
                   type="tel"
                   inputMode="tel"
                   autoComplete="tel"
-                  placeholder="+1 415 555 0199"
+                  placeholder="+234 080 555 0100"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="h-10 sm:h-11"
@@ -209,9 +206,6 @@ export function QuizExperience() {
         <Card className="border-border/80 shadow-md">
           <CardHeader>
             <CardTitle className="font-heading text-xl">Your reflection</CardTitle>
-            <CardDescription>
-              Take a breath—there is no wrong answer, only a true one.
-            </CardDescription>
           </CardHeader>
           <form onSubmit={handleAnswer}>
             <CardContent className="space-y-4">
