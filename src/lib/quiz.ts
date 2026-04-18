@@ -4,7 +4,6 @@ export const QUIZ_QUESTION =
 export type Participant = {
   id: string;
   name: string;
-  phone: string;
   answer: string | null;
   registeredAt: string;
   answeredAt: string | null;

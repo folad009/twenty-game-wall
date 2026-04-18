@@ -4,11 +4,8 @@ import { registerParticipant } from "@/lib/participants-store";
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as { name?: string; phone?: string };
-    const participant = await registerParticipant(
-      body.name ?? "",
-      body.phone ?? ""
-    );
+    const body = (await request.json()) as { name?: string };
+    const participant = await registerParticipant(body.name ?? "");
     return NextResponse.json({ participant });
   } catch (error) {
     const message =

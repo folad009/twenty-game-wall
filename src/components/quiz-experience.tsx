@@ -19,25 +19,22 @@ import { QUIZ_QUESTION } from "@/lib/quiz";
 
 type Step = "register" | "quiz" | "done";
 
-const phoneHint = /^[\d\s+().-]{7,}$/;
-
 export function QuizExperience() {
   const [step, setStep] = useState<Step>("register");
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
   const [answer, setAnswer] = useState("");
   const [participantId, setParticipantId] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
 
   const canSubmitRegistration = useMemo(() => {
-    return name.trim().length > 1 && phoneHint.test(phone.trim());
-  }, [name, phone]);
+    return name.trim().length > 1;
+  }, [name]);
 
   async function handleRegister(e: React.FormEvent) {
     e.preventDefault();
     if (!canSubmitRegistration) {
-      setFormError("Enter your name and a valid phone number.");
+      setFormError("Enter your name.");
       return;
     }
     setBusy(true);
@@ -46,7 +43,7 @@ export function QuizExperience() {
       const res = await fetch("/api/participants/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name.trim(), phone: phone.trim() }),
+        body: JSON.stringify({ name: name.trim() }),
       });
       const data = (await res.json()) as {
         participant?: { id: string };
@@ -99,7 +96,6 @@ export function QuizExperience() {
     setStep("register");
     setParticipantId(null);
     setName("");
-    setPhone("");
     setAnswer("");
     setFormError(null);
   }
@@ -124,7 +120,7 @@ export function QuizExperience() {
           One honest thing that paid off
         </h1>
         <p className="max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base">
-          Register with how we can reach you, then answer the prompt.
+          Add your name, then answer the prompt.
         </p>
         <div className="h-2 overflow-hidden rounded-full bg-muted">
           <div
@@ -145,8 +141,7 @@ export function QuizExperience() {
           <CardHeader>
             <CardTitle className="font-heading text-xl">Enter the room</CardTitle>
             <CardDescription>
-              We will show your name and phone alongside your answer on the guest
-              wall.
+              Your name and answer appear on the live guest wall.
             </CardDescription>
           </CardHeader>
           <form onSubmit={handleRegister}>
@@ -163,25 +158,6 @@ export function QuizExperience() {
                   className="h-10 sm:h-11"
                   required
                 />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="phone">Phone number</Label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  inputMode="tel"
-                  autoComplete="tel"
-                  placeholder="+234 080 555 0100"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="h-10 sm:h-11"
-                  required
-                />
-                <p className="text-xs text-muted-foreground">
-                  Digits and common separators only—used here so teammates can spot
-                  you in the list.
-                </p>
               </div>
               {formError ? (
                 <p className="text-sm text-destructive" role="alert">

@@ -8,7 +8,6 @@ import {
 export const participants = pgTable("participants", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: text("name").notNull(),
-  phone: text("phone").notNull(),
   answer: text("answer"),
   registeredAt: timestamp("registered_at", { withTimezone: true })
     .notNull()

@@ -8,6 +8,13 @@
       "when": 1776378731009,
       "tag": "0000_init_participants",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1776501779884,
+      "tag": "0001_remove_phone",
+      "breakpoints": true
     }
   ]
 }

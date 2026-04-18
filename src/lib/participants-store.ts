@@ -8,21 +8,16 @@ function rowToParticipant(row: typeof participants.$inferSelect): Participant {
   return {
     id: row.id,
     name: row.name,
-    phone: row.phone,
     answer: row.answer,
     registeredAt: row.registeredAt.toISOString(),
     answeredAt: row.answeredAt ? row.answeredAt.toISOString() : null,
   };
 }
 
-export async function registerParticipant(
-  name: string,
-  phone: string
-): Promise<Participant> {
+export async function registerParticipant(name: string): Promise<Participant> {
   const trimmedName = name.trim();
-  const trimmedPhone = phone.trim();
-  if (!trimmedName || !trimmedPhone) {
-    throw new Error("Name and phone are required.");
+  if (!trimmedName) {
+    throw new Error("Name is required.");
   }
 
   const db = getDb();
@@ -30,7 +25,6 @@ export async function registerParticipant(
     .insert(participants)
     .values({
       name: trimmedName,
-      phone: trimmedPhone,
     })
     .returning();
 
