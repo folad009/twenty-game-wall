@@ -40,10 +40,8 @@ function SegmentGroup({
         {group.map((p) => (
           <li key={`${participantKeyPrefix}-${p.id}`} className="space-y-2">
             <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-              <span className="font-medium leading-tight break-words">{p.name}</span>
-              <span className="text-xs text-muted-foreground tabular-nums break-all sm:break-normal">
-                {p.phone}
-              </span>
+              <span className="font-bold leading-tight break-words">{p.name}</span>
+             
             </div>
             <p className="text-sm leading-relaxed text-foreground/90">
               {p.answer ? (
